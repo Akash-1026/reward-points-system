@@ -21,13 +21,13 @@ public class FetchRewardsController {
     private FetchRewardsService fetchRewardsService;
 
     @GetMapping("/payer/balances")
-    BalanceResponseDTO allPayerBalances() {
+    List<Payer> allPayerBalances() {
         return fetchRewardsService.getAllPayerBalances();
     }
 
     @PostMapping(path = "/payer/transaction", consumes = "application/json", produces = "application/json")
-    Transaction addTransaction(@RequestBody TransactionRequestDTO newTransaction) {
-        return fetchRewardsService.addTransaction(newTransaction);
+    void addTransaction(@RequestBody TransactionRequestDTO newTransaction) {
+        fetchRewardsService.addTransaction(newTransaction);
     }
 
     @PostMapping(path = "/consumer/points", consumes = "application/json", produces = "application/json")

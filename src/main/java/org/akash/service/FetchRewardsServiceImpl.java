@@ -1,7 +1,5 @@
 package org.akash.service;
 
-import net.bytebuddy.asm.Advice;
-import org.akash.dto.BalanceResponseDTO;
 import org.akash.dto.SpendPointsRequestDTO;
 import org.akash.dto.SpendPointsResponseDTO;
 import org.akash.dto.TransactionRequestDTO;
@@ -36,7 +34,6 @@ public class FetchRewardsServiceImpl implements FetchRewardsService{
             Iterable<Payer> iterablePayerBalance = payerRepository.findAll();
             Iterator<Payer> payerBalanceIterator = iterablePayerBalance.iterator();
             List<Transaction> transactions = new ArrayList<Transaction>();
-
 
             if (optionalTransactions.isPresent()) {
                 transactions = optionalTransactions.get();
@@ -122,53 +119,46 @@ public class FetchRewardsServiceImpl implements FetchRewardsService{
     }
 
     @Override
-    public Transaction addTransaction(TransactionRequestDTO newTransaction) {
+    public void addTransaction(TransactionRequestDTO newTransaction) {
         Transaction transaction = new Transaction();
         transaction.setPayer(newTransaction.getPayer());
         transaction.setPoints(newTransaction.getPoints());
-        transaction.setTimestamp(newTransaction.getDate());
-        return transactionRepository.save(transaction);
+        transaction.setTimestamp(newTransaction.getTimestamp());
+        Payer payer;
+        long totalBalance;
+
+        Optional<Payer> optionalPayer = payerRepository.findByName(transaction.getPayer());
+        if(optionalPayer.isPresent()){
+            payer = optionalPayer.get();
+            totalBalance = payer.getBalance() + transaction.getPoints();
+            if (totalBalance >= 0){
+                payer.setBalance(totalBalance);
+            }
+            else{
+                throw new BadRequestException("Insufficient points");
+            }
+        }else {
+            payer = new Payer();
+            payer.setName(transaction.getPayer());
+            totalBalance = transaction.getPoints();
+            if (totalBalance >= 0){
+                payer.setBalance(totalBalance);
+            }
+            else{
+                throw new BadRequestException("Insufficient points");
+            }
+        }
+        payerRepository.save(payer);
+        transactionRepository.save(transaction);
     }
 
     @Override
     public List<Transaction> getAllTransactions() {
-        return null;
+        return (List<Transaction>) transactionRepository.findAll();
     }
 
     @Override
-    public BalanceResponseDTO getAllPayerBalances() {
-        try {
-            HashMap<String, Long> balanceMap = new HashMap<String, Long>();
-            Iterator<Payer> payerBalanceIterator = payerRepository.findAll().iterator();
-            List<Object> response = new ArrayList();
-
-
-            while (payerBalanceIterator.hasNext()) {
-                Payer payerBalance = payerBalanceIterator.next();
-                balanceMap.put(payerBalance.getName(), payerBalance.getBalance());
-            }
-
-            // Create success response
-            BalanceResponseDTO responseMessage = new BalanceResponseDTO();
-            responseMessage.setSuccess(true);
-            responseMessage.setMessage("Rewards spent!");
-            responseMessage.setError("");
-            responseMessage.setStatus(HttpStatus.OK);
-            responseMessage.setResponse(balanceMap);
-            return responseMessage;
-
-
-        }catch(Exception e){
-            // Create error response
-//            log.error("Error getting balance",e);
-            BalanceResponseDTO responseMessage = new BalanceResponseDTO();
-            responseMessage.setSuccess(false);
-            responseMessage.setMessage("Error getting balance!");
-            responseMessage.setError(e.getMessage());
-            responseMessage.setStatus(HttpStatus.BAD_REQUEST);
-            responseMessage.setResponse(new HashMap());
-            return responseMessage;
-        }
-
+    public List<Payer> getAllPayerBalances() {
+        return (List<Payer>) payerRepository.findAll();
     }
 }

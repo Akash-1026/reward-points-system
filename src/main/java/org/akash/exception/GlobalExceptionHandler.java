@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -20,7 +19,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<ExceptionResponse>(response, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(ResourceNotFoundException.class)
+    @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ExceptionResponse> badRequest(BadRequestException ex) {
         ExceptionResponse response = new ExceptionResponse();
         response.setErrorCode("BAD_REQUEST");

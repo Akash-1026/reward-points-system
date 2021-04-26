@@ -5,7 +5,7 @@ import java.util.Date;
 public class TransactionRequestDTO {
     String payer;
     int points;
-    Date date;
+    Date timestamp;
 
     public String getPayer() {
         return payer;
@@ -23,11 +23,11 @@ public class TransactionRequestDTO {
         this.points = points;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getTimestamp() {
+        return timestamp;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 }
