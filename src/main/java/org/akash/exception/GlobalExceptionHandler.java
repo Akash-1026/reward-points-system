@@ -28,4 +28,14 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<ExceptionResponse>(response, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(InternalServerErrorException.class)
+    public ResponseEntity<ExceptionResponse> badRequest(InternalServerErrorException ex) {
+        ExceptionResponse response = new ExceptionResponse();
+        response.setErrorCode("Internal Server Exception");
+        response.setErrorMessage(ex.getMessage());
+        response.setTimestamp(LocalDateTime.now());
+
+        return new ResponseEntity<ExceptionResponse>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
