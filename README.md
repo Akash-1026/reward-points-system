@@ -29,7 +29,6 @@ There are two rules for determining what points to "spend" first:
 
 [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows)
 
-[Postman](https://www.postman.com/downloads/)
 
 ## How to run the project
 
@@ -42,11 +41,12 @@ Step 2: Setting up the project
 * Using "-git clone" clone the project into your local machine.
 
 * Open IntelliJ. On top click on File->Open. Select the pom.xml in the project folder and select add as project. This will add project into your IntelliJ IDE.
-For detailed tutorial [click here](https://vaadin.com/learn/tutorials/modern-web-apps-with-spring-boot-and-vaadin/importing-running-and-debugging-a-java-maven-project-in-intellij-idea)
  
 * Run the project. 
 
 Note: Generally the project starts at localhost:8080  but in case it does not, go to your console and see last second line it will show the port at which your porject is running.
 
 Step 3: Testing the project
-* Now to check our end points(APIs/Services) we would need a postman. Its a tool that will simulate various types of request sent to our webservice. For more details about postman [click here](https://www.postman.com/api-platform/).
+* To check the end point services [Swagger UI](http://localhost:8080/swagger-ui/). Go to fetch-rewards-controller 
+
+
