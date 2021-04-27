@@ -11,8 +11,8 @@ public class Payer {
     @Id
     @Type(type = "uuid-char")
     private UUID payerId;
-    private String name;
-    private long balance;
+    private String payer;
+    private long points;
 
     public Payer(){
         this.payerId = UUID.randomUUID();
@@ -26,19 +26,19 @@ public class Payer {
         this.payerId = payerId;
     }
 
-    public String getName() {
-        return name;
+    public String getPayer() {
+        return payer;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPayer(String name) {
+        this.payer = name;
     }
 
-    public long getBalance() {
-        return balance;
+    public long getPoints() {
+        return points;
     }
 
-    public void setBalance(long balance) {
-        this.balance = balance;
+    public void setPoints(long balance) {
+        this.points = balance;
     }
 }

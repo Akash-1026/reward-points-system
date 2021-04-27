@@ -11,6 +11,6 @@ import java.util.UUID;
 
 @Repository
 public interface PayerRepository extends CrudRepository<Payer, UUID> {
-    @Query("select c from Payer c where c.name=:name")
+    @Query("select c from Payer c where c.payer=:name")
     Optional<Payer> findByName(@Param("name") String payer);
 }

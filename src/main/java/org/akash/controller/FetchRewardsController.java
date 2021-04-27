@@ -1,11 +1,8 @@
 package org.akash.controller;
 
-import org.akash.dto.BalanceResponseDTO;
+import org.akash.dto.PayerDTO;
 import org.akash.dto.SpendPointsRequestDTO;
-import org.akash.dto.SpendPointsResponseDTO;
 import org.akash.dto.TransactionRequestDTO;
-import org.akash.entity.Payer;
-import org.akash.entity.Transaction;
 import org.akash.service.FetchRewardsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class FetchRewardsController {
@@ -21,7 +20,7 @@ public class FetchRewardsController {
     private FetchRewardsService fetchRewardsService;
 
     @GetMapping("/payer/balances")
-    List<Payer> allPayerBalances() {
+    Map<String, Long> allPayerBalances() {
         return fetchRewardsService.getAllPayerBalances();
     }
 
@@ -31,7 +30,7 @@ public class FetchRewardsController {
     }
 
     @PostMapping(path = "/consumer/points", consumes = "application/json", produces = "application/json")
-    SpendPointsResponseDTO spendPoints(@RequestBody SpendPointsRequestDTO points) {
+    List<PayerDTO> spendPoints(@RequestBody SpendPointsRequestDTO points) {
         return fetchRewardsService.spendPoints(points);
     }
 }
