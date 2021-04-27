@@ -33,7 +33,7 @@ There are two rules for determining what points to "spend" first:
 ## How to run the project
 
 Step 1: Setting up the tools
-* Download Java, IntelliJ and Postman. Links are given above.
+* Download Java and IntelliJ, Links are given above.
 
 * [Set up java](https://www.youtube.com/watch?v=1ZbHHLobt8A) in local machine. [Set up java in IntelliJ](https://www.youtube.com/watch?v=L7IZ6Ckujbw). 
 
