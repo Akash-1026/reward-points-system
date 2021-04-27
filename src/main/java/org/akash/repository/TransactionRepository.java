@@ -11,6 +11,6 @@ import java.util.UUID;
 
 @Repository
 public interface TransactionRepository extends CrudRepository<Transaction, UUID> {
-    @Query("select t from Transaction t where t.isProcessed=false order by t.timestamp")
+    @Query("select currTransaction from Transaction currTransaction where currTransaction.isProcessed=false order by currTransaction.timestamp")
     Optional<List<Transaction>> findAllNotProcessed();
 }
