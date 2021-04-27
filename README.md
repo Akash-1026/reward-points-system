@@ -49,4 +49,34 @@ Note: Generally the project starts at localhost:8080  but in case it does not, g
 Step 3: Testing the project
 * To check the end point services [Swagger UI](http://localhost:8080/swagger-ui/). Go to fetch-rewards-controller and test all the API's.
 
+## Sample Data
+### Transactions
+T1:{
+    "payer": "DANNON",
+    "points": 300,
+    "timestamp": "2020-10-31T10:00:00Z"
+}
 
+T2:{
+    "payer": "DANNON",
+    "points": -200,
+    "timestamp": "2020-10-31T15:00:00Z"
+}
+
+T3:{
+    "payer": "UNILEVER",
+    "points": 200,
+    "timestamp": "2020-10-31T11:00:00Z"
+}
+
+T4:{
+    "payer": "DANNON",
+    "points": 1000,
+    "timestamp": "2020-11-02T14:00:00Z"
+}
+
+T5:{
+    "payer": "MILLER COORS",
+    "points": 10000,
+    "timestamp": "2020-11-01T14:00:00Z"
+}
