@@ -21,7 +21,7 @@ There are two rules for determining what points to "spend" first:
 **Database:** [H2](https://en.wikipedia.org/wiki/H2_(DBMS))
 
 
-**Tools:** IntelliJ, Swagger, Postman
+**Tools:** IntelliJ, Swagger
 
 ## Links to download the Tools
 
@@ -47,6 +47,6 @@ Step 2: Setting up the project
 Note: Generally the project starts at localhost:8080  but in case it does not, go to your console and see last second line it will show the port at which your porject is running.
 
 Step 3: Testing the project
-* To check the end point services [Swagger UI](http://localhost:8080/swagger-ui/). Go to fetch-rewards-controller 
+* To check the end point services [Swagger UI](http://localhost:8080/swagger-ui/). Go to fetch-rewards-controller and test all the API's.
 
 
